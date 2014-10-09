@@ -2,21 +2,26 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<title>Evaluation</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />	
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-	</head>
 	<body>		
-		<h1>I'm a leaflet map!</h1>
-		<div class="container">
-			<a href="index.html" class="btn btn-default btn-lg active" role="button">Back</a>
-		</div>
+		<div id="map" class="leaflet-container"></div>
 	</body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+		<script>
+		var map = L.map('map').setView([47.2267, 8.8167], 13);
+		L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
+			maxZoom: 21,
+			attribution: ''
+		}).addTo(map);
+		</script>
 </html>

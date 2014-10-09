@@ -7,3 +7,7 @@ h1{
 .mapchoise{
 	width: 150px;
 }
+
+html, body, #map {
+    height: 100%;
+}
