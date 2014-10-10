@@ -25,6 +25,14 @@
 			attribution: ''
 		}).addTo(map);
 		
+		function onLocationFound(e) {
+		var radius = e.accuracy / 2;
+		L.marker(e.latlng).addTo(map)
+			.bindPopup("You are somewhere within this radius (" + radius + " metres)").openPopup();
+			L.circle(e.latlng, radius).addTo(map);
+		}
+		map.on('locationfound', onLocationFound);
+		
 		function onLocationError(e) {
     		map.setView([47.2267, 8.8167], 13);
 		}
