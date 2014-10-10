@@ -18,7 +18,8 @@
 		<div id="map" class="leaflet-container"></div>
 	</body>
 		<script>
-		var map = L.map('map').setView([47.2267, 8.8167], 13);
+		var map = L.map('map');
+		map.locate({setView: true, maxZoom: 16});
 		L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
 			maxZoom: 21,
 			attribution: ''
