@@ -22,7 +22,7 @@
 		map.locate({setView: true, maxZoom: 21});
 		L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
 			maxZoom: 21,
-			attribution: ''
+			attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a>',
 		}).addTo(map);
 		
 		function onLocationFound(e) {

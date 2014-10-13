@@ -20,22 +20,18 @@
 	</body>
     <script>
 		var map = new ol.Map({
-			target: 'map',
-			layers: [
-				new ol.layer.Tile({
-					title:"OSM Swiss",
-					source: new ol.source.XYZ({
-						attributions: ["attribution"],
-						url: 'http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png',
-						params: {LAYERS: 'bluemarble', VERSION: '1.1.1'}
-					})
-				})
-			],
-			view: new ol.View({
-			projection: 'EPSG:4326',
-			center: [0, 0],
-			zoom: 0
-			}),
+		  target: 'map',
+		  layers: [
+		    new ol.layer.Tile({
+		      source: new ol.source.XYZ({
+		        url: 'http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png'
+		      })
+		    })
+		  ],
+		  view: new ol.View({
+		    center: [47.2267, 8.8167],
+		    zoom: 13
+		  })
 		});
     </script>
 </html>
