@@ -16,11 +16,13 @@
 		<![endif]-->
 	<body>		
 		<div id="map" class="leaflet-container"></div>
+		<div id="overlay" style="position:absolute; top:10px; left:100px;">
+			<a href="index.html" type="button" class="btn btn-default btn-lg">
+ 			 	Back
+			</a>
+		</div>
 	</body>
-		<script>
-
-		
-		
+	<script>
 		var swissstyle = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
 			attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a>',
 		}),
@@ -46,5 +48,5 @@
 		L.control.layers(baseMaps).addTo(map);
 		
 
-		</script>
+	</script>
 </html>

@@ -17,15 +17,19 @@
 	</head>
 	<body>		
 		<div id="map"></div>
-		
+		<div id="overlay" style="position:absolute; top:10px; left:100px;">
+			<a href="index.html" type="button" class="btn btn-default btn-lg">
+ 			 	Back
+			</a>
+		</div>
 	</body>
     <script>
-		var layer =  new ol.layer.Tile({
+		var layer = new ol.layer.Tile({
 			source: new ol.source.XYZ({
 				url: 'http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png'
 			})
 		});
-    
+
 		var map = new ol.Map({
 		  target: 'map',
 		  layers: [layer],
