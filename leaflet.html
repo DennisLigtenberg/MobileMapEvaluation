@@ -18,25 +18,33 @@
 		<div id="map" class="leaflet-container"></div>
 	</body>
 		<script>
-		var map = L.map('map').setView([47.2267, 8.8167], 13);
-		map.locate({setView: true, maxZoom: 21});
-		L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
-			maxZoom: 21,
-			attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a>',
-		}).addTo(map);
-		
-		function onLocationFound(e) {
-		var radius = e.accuracy / 2;
-		L.marker(e.latlng).addTo(map)
-			.bindPopup("You are somewhere within this radius (" + radius + " metres)").openPopup();
-			L.circle(e.latlng, radius).addTo(map);
-		}
-		map.on('locationfound', onLocationFound);
-		
-		function onLocationError(e) {
-    		map.setView([47.2267, 8.8167], 13);
-		}
 
-		map.on('locationerror', onLocationError);
+		
+		
+		var swissstyle = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
+			attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a>',
+		}),
+		osm = L.tileLayer('http://tile.osm.ch/21781/{z}/{x}/{y}.png',{
+			attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a>',
+		});
+		
+		var map = L.map('map',{
+			center: [47.2267, 8.8167],
+			zoom: 11,
+			maxzoom: 11,
+			layers: [osm, swissstyle]
+		});
+		
+		var baseMaps = {
+			"OSM": osm,
+			"SwissStyle": swissstyle
+		};
+		
+		var overlayMaps = {
+		};
+		
+		L.control.layers(baseMaps).addTo(map);
+		
+
 		</script>
 </html>
