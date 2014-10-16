@@ -4,12 +4,17 @@ var swissstyle = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png
     osm = L.tileLayer('http://tile.osm.ch/21781/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a>',
     });
+    
+var points = new L.LayerGroup();
+
+//L.marker([47.2267, 8.8167]).bindPopup('Test').addTo(points);
+L.geoJson(castles).addTo(points);
 
 var map = L.map('map', {
     center: [47.2267, 8.8167],
     zoom: 11,
     maxzoom: 11,
-    layers: [osm, swissstyle]
+    layers: [swissstyle, points]
 });
 
 var baseMaps = {
@@ -17,6 +22,8 @@ var baseMaps = {
     "SwissStyle": swissstyle
 };
 
-var overlayMaps = {};
+var overlay = {
+	"points": points
+};
 
-L.control.layers(baseMaps).addTo(map);
+L.control.layers(baseMaps, overlay).addTo(map);
