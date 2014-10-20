@@ -18,8 +18,8 @@ var map = new ol.Map({
 	                type: "base",
 	                visible: false,
 	                source: new ol.source.XYZ({
-	                    url: 'http://tile.osm.ch/21781/{z}/{x}/{y}.png'
-	
+	                    url: 'http://tile.osm.ch/21781/{z}/{x}/{y}.png',
+	                    projection: 'EPSG:3857'
 	                })
 	            }),
 	        ]
@@ -28,9 +28,10 @@ var map = new ol.Map({
 	   		'title': 'Points',
 	        layers: [
 	        	new ol.layer.Vector({
-	        		title: "Point",
+	        		title: "Castles",
 	        		  source: new ol.source.GeoJSON({
-    					url:'olcastles.geojson'
+    					url:'olcastles.geojson',
+ 						projection: 'EPSG:3857'
  					}),
 	        	})
 	        ]
@@ -44,3 +45,5 @@ var map = new ol.Map({
 
 var layerSwitcher = new ol.control.LayerSwitcher();
 map.addControl(layerSwitcher);
+
+

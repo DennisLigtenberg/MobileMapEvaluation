@@ -6,8 +6,6 @@ var swissstyle = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png
     });
     
 var points = new L.LayerGroup();
-
-//L.marker([47.2267, 8.8167]).bindPopup('Test').addTo(points);
 L.geoJson(castles).addTo(points);
 
 var map = L.map('map', {
