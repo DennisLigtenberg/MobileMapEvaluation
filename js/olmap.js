@@ -2,6 +2,19 @@ proj4.defs("EPSG:21781","+proj=somerc +lat_0=46.95240555555556 +lon_0=7.43958333
 
 var map = new ol.Map({
 	target: 'map',
+	controls: ol.control.defaults({
+	    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+	        collapsible: false
+	    })
+	}).extend([
+	    new ol.control.ZoomToExtent({
+	        extent: [
+	            599266.301756, 5718903.20002,
+	            1159384.634427, 6050241.789859
+	        ]
+	    }),
+	    new ol.control.ScaleLine()
+	]),
     layers: [
     	new ol.layer.Group({
 	        'title': 'Maps',
@@ -19,7 +32,6 @@ var map = new ol.Map({
 	                visible: false,
 	                source: new ol.source.XYZ({
 	                    url: 'http://tile.osm.ch/21781/{z}/{x}/{y}.png',
-	                    projection: 'EPSG:3857'
 	                })
 	            }),
 	        ]
@@ -29,11 +41,28 @@ var map = new ol.Map({
 	        layers: [
 	        	new ol.layer.Vector({
 	        		title: "Castles",
-	        		  source: new ol.source.GeoJSON({
+	        		source: new ol.source.GeoJSON({
     					url:'olcastles.geojson',
  						projection: 'EPSG:3857'
  					}),
-	        	})
+					style: new ol.style.Style({
+						image: new ol.style.Icon(/** @type {olx.style.IconOptions} */({
+								anchorXUnits: 'pixels',
+								anchorYUnits: 'pixels',
+								src: "Castle.png",
+								width: "38",
+								height: "38",
+							}))
+					})
+	        	}),
+	        	/*new ol.layer.Vector({
+	        		title: "Restaurants",
+	        		visible: false,
+	        		source: new ol.source.GeoJSON({
+    					url:'restaurants.geojson',
+ 						projection: 'EPSG:3857'
+ 					}),
+	        	})*/
 	        ]
 	    })
     ],
