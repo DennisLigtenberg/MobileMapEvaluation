@@ -22,3 +22,9 @@ html, body, #map {
 	top:10px; 
 	left:50px;
 }
+
+#north{
+	position:absolute; 
+	top:16px; 
+	right:55px;
+}

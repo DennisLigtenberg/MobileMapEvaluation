@@ -2,6 +2,9 @@ proj4.defs("EPSG:21781","+proj=somerc +lat_0=46.95240555555556 +lon_0=7.43958333
 
 var map = new ol.Map({
 	target: 'map',
+	interactions: ol.interaction.defaults().extend([
+    new ol.interaction.DragRotateAndZoom()
+  ]),
 	controls: ol.control.defaults({
 	    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
 	        collapsible: false
@@ -13,7 +16,10 @@ var map = new ol.Map({
 	            1159384.634427, 6050241.789859
 	        ]
 	    }),
-	    new ol.control.ScaleLine()
+	    new ol.control.ScaleLine(),
+	    new ol.control.Rotate({
+	    	autoHide: false
+	    })
 	]),
     layers: [
     	new ol.layer.Group({
