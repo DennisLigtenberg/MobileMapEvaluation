@@ -57,14 +57,6 @@ var p1 = L.point(5.9700, 45.8300),
     p2 = L.point(10.4900, 47.8100),
     bounds = L.bounds(p1, p2);
     
-var fitBounds = L.Control.extend({
-    onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'fitBounds');
-		map.fitBounds(bounds);
-        return container;
-    }
-});
 
-map.addControl(new fitBounds());
 L.control.scale({imperial: false}).addTo(map);
 L.control.layers(baseMaps, overlay).addTo(map);
