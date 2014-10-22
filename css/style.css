@@ -29,8 +29,9 @@ html, body, #map {
 	right:55px;
 }
 
-.fitBounds{
-	position:absolute; 
-	top:100px; 
-	left:10px;
+.ol-mouse-position{
+	position:absolute;
+	left: 170px;
+	top:auto;
+	bottom: 10px;
 }

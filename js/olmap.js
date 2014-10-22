@@ -8,8 +8,6 @@ var map = new ol.Map({
     controls: ol.control.defaults().extend([
         new ol.control.ZoomToExtent({
             extent: [
-                /*599266.301756, 5718903.20002,
-                1159384.634427, 6050241.789859,*/
                 664577.360036, 5753148.32695,
                 1167741.45842, 6075303.61197
             ]
@@ -17,6 +15,10 @@ var map = new ol.Map({
         new ol.control.ScaleLine(),
         new ol.control.Rotate({
             autoHide: false
+        }),
+        new ol.control.MousePosition({
+        	projection: 'EPSG:4326',
+        	
         })
     ]),
     layers: [
@@ -26,6 +28,7 @@ var map = new ol.Map({
                 new ol.layer.Tile({
                     title: "Swiss Style OSM",
                     type: "base",
+                    minScale: 9,
                     source: new ol.source.XYZ({
                         url: 'http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png',
 						attributions: [
@@ -36,7 +39,7 @@ var map = new ol.Map({
                     })
                 }),
                 new ol.layer.Tile({
-                    title: "OSM CH",
+                    title: "Mapbox Satelite",
                     type: "base",
                     visible: false,
                     source: new ol.source.XYZ({
@@ -77,7 +80,8 @@ var map = new ol.Map({
     ],
     view: new ol.View({
         center: ol.proj.transform([8.8167, 47.2267], 'EPSG:4326', 'EPSG:3857'),
-        zoom: 13
+        zoom: 13,
+		//extent: [5332203.609, 5090640.31398,1186775.975, 46758.583284]
     })
 });
 
