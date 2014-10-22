@@ -28,3 +28,9 @@ html, body, #map {
 	top:16px; 
 	right:55px;
 }
+
+.fitBounds{
+	position:absolute; 
+	top:100px; 
+	left:10px;
+}
