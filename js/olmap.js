@@ -17,7 +17,7 @@ var map = new ol.Map({
             autoHide: false
         }),
         new ol.control.MousePosition({
-        	projection: 'EPSG:4326',
+        	projection: 'EPSG:4326'
         	
         })
     ]),
@@ -35,7 +35,7 @@ var map = new ol.Map({
 	                        new ol.Attribution({
 	                            html: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a></br><a href="http://www.hsr.ch/geometalab">By GeometaLab</a>'
 	                        }),
-	                    ],
+	                    ]
                     })
                 }),
                 new ol.layer.Tile({
@@ -63,7 +63,7 @@ var map = new ol.Map({
                             anchorYUnits: 'pixels',
                             src: "img/Castle.png",
                             width: "38",
-                            height: "38",
+                            height: "38"
                         }))
                     })
                 }),
@@ -81,7 +81,8 @@ var map = new ol.Map({
     view: new ol.View({
         center: ol.proj.transform([8.8167, 47.2267], 'EPSG:4326', 'EPSG:3857'),
         zoom: 13,
-		//extent: [5332203.609, 5090640.31398,1186775.975, 46758.583284]
+        minZoom: 9,
+		extent: [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197]
     })
 });
 
