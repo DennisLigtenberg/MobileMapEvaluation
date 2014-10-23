@@ -61,6 +61,10 @@ var overlay = {
 	"Restaurants": restaurants
 };
 
+$( "#zoomExtent" ).click(function() {
+    map.fitBounds(bounds);
+});
+
 L.control.mousePosition().addTo(map);
 L.control.scale({imperial: false}).addTo(map);
 L.control.layers(baseMaps, overlay).addTo(map);
