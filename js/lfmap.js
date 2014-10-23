@@ -7,12 +7,17 @@ var swissstyle = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png
     	minZoom: 9
     });
     
-var castleicon = L.icon({
+var castleIcon = L.icon({
     iconUrl: 'img/Castle.png',
     iconSize: [28, 28]
-}),
+})
 
-castles = new L.LayerGroup();
+var restIcon = L.icon({
+    iconUrl: 'img/Restaurant.png',
+    iconSize: [28, 28]
+})
+
+var castles = new L.LayerGroup();
 
 $.getJSON("geojson/castles.geojson", function(data) {
 	var jsoncastles = L.geoJson(data, {
@@ -20,26 +25,27 @@ $.getJSON("geojson/castles.geojson", function(data) {
 			layer.bindPopup(feature.properties.name);
 		},
         pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, {icon: castleicon });
+            return L.marker(latlng, {icon: castleIcon });
         }
     });
     jsoncastles.addTo(castles);
 });
 
-var restaurants = new L.LayerGroup();
 
-/*$.getJSON("geojson/restaurants.geojson", function(data) {
-    var restaurants = L.geoJson(data, {
+var restaurants = new L.LayerGroup();
+/*
+$.getJSON("geojson/restaurants.geojson", function(data) {
+    var geojsonrestaurants = L.geoJson(data, {
         onEachFeature: function(feature, layer) {
             layer.bindPopup(feature.properties.name);
         },
         pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, {icon: castleicon });
+            return L.marker(latlng, {icon: restIcon });
         }
     });
-    restaurants.addTo(points);
-});*/
-
+    geojsonrestaurants.addTo(restaurants);
+});
+*/
 var p1 = new L.LatLng(45.7300, 5.8000),
     p2 = new L.LatLng(47.9000, 10.600),
     bounds = L.latLngBounds(p1, p2);

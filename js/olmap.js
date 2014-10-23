@@ -1,5 +1,3 @@
-proj4.defs("EPSG:21781", "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs");
-
 var map = new ol.Map({
     target: 'map',
     interactions: ol.interaction.defaults().extend([
@@ -18,7 +16,7 @@ var map = new ol.Map({
         }),
         new ol.control.MousePosition({
         	projection: 'EPSG:4326'
-        	
+
         })
     ]),
     layers: [
@@ -44,6 +42,11 @@ var map = new ol.Map({
                     visible: false,
                     source: new ol.source.XYZ({
                         url: 'http://a.tiles.mapbox.com/v3/tmcw.map-j5fsp01s/{z}/{x}/{y}.png',
+                        attributions: [
+                            new ol.Attribution({
+                                html: 'Map data &copy; <a href="http://www.mapbox.com/">Mapbox</a></br><a href="http://www.hsr.ch/geometalab">By GeometaLab</a>'
+                            }),
+                        ]
                     })
                 }),
             ]
@@ -62,8 +65,8 @@ var map = new ol.Map({
                             anchorXUnits: 'pixels',
                             anchorYUnits: 'pixels',
                             src: "img/Castle.png",
-                            width: "38",
-                            height: "38"
+                            width: "28",
+                            height: "28"
                         }))
                     })
                 }),
@@ -74,6 +77,15 @@ var map = new ol.Map({
     					url:'geojson/restaurants.geojson',
  						projection: 'EPSG:3857'
  					}),
+                     style: new ol.style.Style({
+                        image: new ol.style.Icon( /** @type {olx.style.IconOptions} *//* ({
+                            anchorXUnits: 'pixels',
+                            anchorYUnits: 'pixels',
+                            src: "img/Restaurant.png",
+                            width: "28",
+                            height: "28"
+                        }))
+                    })
 	        	})*/
             ]
         })
@@ -85,6 +97,35 @@ var map = new ol.Map({
 		extent: [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197]
     })
 });
+
+var element = document.getElementById('popup');
+
+var popup = new ol.Overlay({
+    element: element,
+    positioning: 'bottom-center',
+    stopEvent: false
+});
+map.addOverlay(popup);
+
+map.on('click', function(evt) {
+    $(element).popover('destroy');
+    var feature = map.forEachFeatureAtPixel(evt.pixel,
+        function(feature, layer) {
+            return feature;
+        });
+    if (feature) {
+        var geometry = feature.getGeometry();
+        var coord = geometry.getCoordinates();
+        popup.setPosition(coord);
+        $(element).popover({
+            'placement': 'top',
+            'html': true,
+            'content': feature.get('name')
+        });
+        $(element).popover('show');
+    }
+});
+
 
 var layerSwitcher = new ol.control.LayerSwitcher();
 map.addControl(layerSwitcher);
