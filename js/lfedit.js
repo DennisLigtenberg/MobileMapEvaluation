@@ -58,6 +58,6 @@ L.NewMarkerControl = L.Control.extend({
     }
 });
 
-map.addControl(new L.NewLineControl());
 map.addControl(new L.NewMarkerControl());
+map.addControl(new L.NewLineControl());
 map.addControl(new L.NewPolygonControl());

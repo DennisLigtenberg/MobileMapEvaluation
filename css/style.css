@@ -33,5 +33,6 @@ html, body, #map {
 	position:absolute;
 	left: 170px;
 	top:auto;
+	right:auto;
 	bottom: 10px;
 }

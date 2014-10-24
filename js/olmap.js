@@ -3,7 +3,11 @@ var map = new ol.Map({
     interactions: ol.interaction.defaults().extend([
         new ol.interaction.DragRotateAndZoom()
     ]),
-    controls: ol.control.defaults().extend([
+    controls: ol.control.defaults({
+        attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            collapsible: false
+        })
+    }).extend([
         new ol.control.ZoomToExtent({
             extent: [
                 664577.360036, 5753148.32695,
@@ -31,7 +35,8 @@ var map = new ol.Map({
                         url: 'http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png',
 						attributions: [
 	                        new ol.Attribution({
-	                            html: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a></br><a href="http://www.hsr.ch/geometalab">By GeometaLab</a>'
+	                            html: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
+                                '<a href="http://www.hsr.ch/geometalab">By Geometalab --------</a>'
 	                        }),
 	                    ]
                     })
@@ -44,7 +49,8 @@ var map = new ol.Map({
                         url: 'http://a.tiles.mapbox.com/v3/tmcw.map-j5fsp01s/{z}/{x}/{y}.png',
                         attributions: [
                             new ol.Attribution({
-                                html: 'Map data &copy; <a href="http://www.mapbox.com/">Mapbox</a></br><a href="http://www.hsr.ch/geometalab">By GeometaLab</a>'
+                                html: 'Map data &copy; <a href="http://www.mapbox.com/">Mapbox</a> | ' +
+                                '<a href="http://www.hsr.ch/geometalab">By Geometalab --------</a>'
                             }),
                         ]
                     })
@@ -116,13 +122,24 @@ map.on('click', function(evt) {
     if (feature) {
         var geometry = feature.getGeometry();
         var coord = geometry.getCoordinates();
-        popup.setPosition(coord);
-        $(element).popover({
-            'placement': 'top',
-            'html': true,
-            'content': feature.get('name')
-        });
-        $(element).popover('show');
+        if(!feature.get('name')){
+            popup.setPosition(coord);
+            $(element).popover({
+                'placement': 'top',
+                'html': true,
+                'content': "Kein Eintrag"
+            });
+            $(element).popover('show');
+        }
+        else {
+            popup.setPosition(coord);
+            $(element).popover({
+                'placement': 'top',
+                'html': true,
+                'content': feature.get('name')
+            });
+            $(element).popover('show');
+        }
     }
 });
 

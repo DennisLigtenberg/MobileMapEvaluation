@@ -22,7 +22,12 @@ var castles = new L.LayerGroup();
 $.getJSON("geojson/castles.geojson", function(data) {
 	var jsoncastles = L.geoJson(data, {
 		onEachFeature: function (feature, layer) {
-			layer.bindPopup(feature.properties.name);
+            if(feature.properties.name) {
+                layer.bindPopup(feature.properties.name);
+            }
+            else{
+                layer.bindPopup("Kein Eintrag");
+            }
 		},
         pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {icon: castleIcon });
@@ -46,18 +51,13 @@ $.getJSON("geojson/restaurants.geojson", function(data) {
 });
 */
 
-var params = {};
-window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-    params[key] = value;
-});
-
 var p1 = new L.LatLng(45.7300, 5.8000),
     p2 = new L.LatLng(47.9000, 10.600),
     bounds = L.latLngBounds(p1, p2);
 
 var map = L.map('map', {
     editable: true,
-    center: [params.lat || 47.2267, params.lng || 8.8167],
+    center: [47.2267,8.8167],
     zoom: 11,
     maxBounds: bounds,
     layers: [swissstyle, castles]
