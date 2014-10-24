@@ -31,20 +31,6 @@ $.getJSON("geojson/castles.geojson", function(data) {
     jsoncastles.addTo(castles);
 });
 
-var test = new L.LayerGroup();
-
-$.getJSON("geojson/map.geojson", function(data) {
-    var myFeatures = L.geoJson(data, {
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.name);
-        },
-        pointToLayer: function (feature, latlng) {
-            return L.marker(latlng);
-        }
-    });
-    myFeatures.addTo(test);
-});
-
 var restaurants = new L.LayerGroup();
 /*
 $.getJSON("geojson/restaurants.geojson", function(data) {
@@ -85,7 +71,6 @@ var baseMaps = {
 var overlay = {
 	"Castles": castles,
 	"Restaurants": restaurants,
-    "editable": test
 };
 
 L.FitBounds = L.Control.extend({

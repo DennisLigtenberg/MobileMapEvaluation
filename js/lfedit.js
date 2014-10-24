@@ -10,7 +10,7 @@ L.NewLineControl = L.Control.extend({
 
         link.href = '#';
         link.title = 'Create a new line';
-        link.innerHTML = '/\\/';
+        link.innerHTML = 'L';
         L.DomEvent.on(link, 'click', L.DomEvent.stop)
             .on(link, 'click', function () {
                 map.editTools.startPolyline();
@@ -32,7 +32,7 @@ L.NewPolygonControl = L.Control.extend({
 
         link.href = '#';
         link.title = 'Create a new polygon';
-        link.innerHTML = '▱';
+        link.innerHTML = 'P';
         L.DomEvent.on(link, 'click', L.DomEvent.stop)
             .on(link, 'click', function () {
                 map.editTools.startPolygon();
@@ -54,7 +54,7 @@ L.NewMarkerControl = L.Control.extend({
 
         link.href = '#';
         link.title = 'Add a new marker';
-        link.innerHTML = '⚫';
+        link.innerHTML = 'M';
         L.DomEvent.on(link, 'click', L.DomEvent.stop)
             .on(link, 'click', function () {
                 map.editTools.startMarker();
