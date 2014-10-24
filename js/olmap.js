@@ -126,6 +126,5 @@ map.on('click', function(evt) {
     }
 });
 
-
 var layerSwitcher = new ol.control.LayerSwitcher();
 map.addControl(layerSwitcher);

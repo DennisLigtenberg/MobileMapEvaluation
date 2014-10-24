@@ -38,6 +38,10 @@ html, body, #map {
 
 #zoomExtent{
 	position:absolute;
-	top:10px;
-	left:130px;
+	top:70px;
+	left:5px;
+	border: 1px solid;
+	border-radius: 6px;
+	background-color: #FFF;
+	border-color: #CCC;
 }
