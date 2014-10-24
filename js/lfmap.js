@@ -31,7 +31,7 @@ $.getJSON("geojson/castles.geojson", function(data) {
     jsoncastles.addTo(castles);
 });
 
-var editable = new L.LayerGroup();
+var test = new L.LayerGroup();
 
 $.getJSON("geojson/map.geojson", function(data) {
     var myFeatures = L.geoJson(data, {
@@ -42,7 +42,7 @@ $.getJSON("geojson/map.geojson", function(data) {
             return L.marker(latlng);
         }
     });
-    myFeatures.addTo(editable);
+    myFeatures.addTo(test);
 });
 
 var restaurants = new L.LayerGroup();
@@ -70,6 +70,7 @@ var p1 = new L.LatLng(45.7300, 5.8000),
     bounds = L.latLngBounds(p1, p2);
 
 var map = L.map('map', {
+    editable: true,
     center: [params.lat || 47.2267, params.lng || 8.8167],
     zoom: 11,
     maxBounds: bounds,
@@ -84,12 +85,33 @@ var baseMaps = {
 var overlay = {
 	"Castles": castles,
 	"Restaurants": restaurants,
-    "editable": editable
+    "editable": test
 };
 
-$( "#zoomExtent" ).click(function() {
-    map.fitBounds(bounds);
+L.FitBounds = L.Control.extend({
+
+    options: {
+        position: 'topleft'
+    },
+
+    onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-control leaflet-bar'),
+            link = L.DomUtil.create('a', '', container);
+
+        link.href = '#';
+        link.title = 'Zoom to max extent';
+        link.innerHTML = 'E';
+        L.DomEvent.on(link, 'click', L.DomEvent.stop)
+            .on(link, 'click', function () {
+                map.fitBounds(bounds);
+            });
+
+        return container;
+    }
 });
+
+
+map.addControl(new L.FitBounds());
 
 L.control.mousePosition().addTo(map);
 L.control.scale({imperial: false}).addTo(map);
