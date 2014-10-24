@@ -76,7 +76,7 @@ var map = new ol.Map({
                         }))
                     })
                 }),
-                /*new ol.layer.Vector({
+                new ol.layer.Vector({
 	        		title: "Restaurants",
 	        		visible: false,
 	        		source: new ol.source.GeoJSON({
@@ -84,7 +84,7 @@ var map = new ol.Map({
  						projection: 'EPSG:3857'
  					}),
                      style: new ol.style.Style({
-                        image: new ol.style.Icon( /** @type {olx.style.IconOptions} *//* ({
+                        image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
                             anchorXUnits: 'pixels',
                             anchorYUnits: 'pixels',
                             src: "img/Restaurant.png",
@@ -92,7 +92,7 @@ var map = new ol.Map({
                             height: "28"
                         }))
                     })
-	        	})*/
+	        	})
             ]
         })
     ],

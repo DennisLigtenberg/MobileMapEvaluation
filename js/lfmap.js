@@ -1,9 +1,11 @@
 var swissstyle = L.tileLayer('http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | <a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
+        attribution: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
+        '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
     	minZoom: 9
     }),
     mapbox = L.tileLayer('http://api.tiles.mapbox.com/v4/sfkeller.k0onh2me/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2ZrZWxsZXIiLCJhIjoia3h4T3pScyJ9.MDLSUwpRpPqaV7SVfGcZDw', {
-        attribution: 'Map data &copy; <a href="http://www.mapbox.com">Mapbox</a> | <a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
+        attribution: 'Map data &copy; <a href="http://www.mapbox.com">Mapbox</a> | ' +
+        '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
     	minZoom: 9
     });
     
@@ -37,7 +39,7 @@ $.getJSON("geojson/castles.geojson", function(data) {
 });
 
 var restaurants = new L.LayerGroup();
-/*
+
 $.getJSON("geojson/restaurants.geojson", function(data) {
     var geojsonrestaurants = L.geoJson(data, {
         onEachFeature: function(feature, layer) {
@@ -49,7 +51,7 @@ $.getJSON("geojson/restaurants.geojson", function(data) {
     });
     geojsonrestaurants.addTo(restaurants);
 });
-*/
+
 
 var p1 = new L.LatLng(45.7300, 5.8000),
     p2 = new L.LatLng(47.9000, 10.600),
@@ -70,7 +72,7 @@ var baseMaps = {
 
 var overlay = {
 	"Castles": castles,
-	"Restaurants": restaurants,
+	"Restaurants": restaurants
 };
 
 L.FitBounds = L.Control.extend({
@@ -95,9 +97,12 @@ L.FitBounds = L.Control.extend({
     }
 });
 
+var loadingControl = L.Control.loading({
+    spinjs: true
+});
 
+map.addControl(loadingControl);
 map.addControl(new L.FitBounds());
-
 L.control.mousePosition().addTo(map);
 L.control.scale({imperial: false}).addTo(map);
 L.control.layers(baseMaps, overlay).addTo(map);
