@@ -39,7 +39,7 @@ $.getJSON("geojson/castles.geojson", function(data) {
 });
 
 var restaurants = new L.LayerGroup();
-
+/*
 $.getJSON("geojson/restaurants.geojson", function(data) {
     var geojsonrestaurants = L.geoJson(data, {
         onEachFeature: function(feature, layer) {
@@ -51,7 +51,7 @@ $.getJSON("geojson/restaurants.geojson", function(data) {
     });
     geojsonrestaurants.addTo(restaurants);
 });
-
+*/
 
 var p1 = new L.LatLng(45.7300, 5.8000),
     p2 = new L.LatLng(47.9000, 10.600),

@@ -20,7 +20,6 @@ var map = new ol.Map({
         }),
         new ol.control.MousePosition({
         	projection: 'EPSG:4326'
-
         })
     ]),
     layers: [
@@ -76,6 +75,7 @@ var map = new ol.Map({
                         }))
                     })
                 }),
+                /*
                 new ol.layer.Vector({
 	        		title: "Restaurants",
 	        		visible: false,
@@ -84,7 +84,7 @@ var map = new ol.Map({
  						projection: 'EPSG:3857'
  					}),
                      style: new ol.style.Style({
-                        image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+                        image: new ol.style.Icon( /** @type {olx.style.IconOptions} *//* ({
                             anchorXUnits: 'pixels',
                             anchorYUnits: 'pixels',
                             src: "img/Restaurant.png",
@@ -92,7 +92,7 @@ var map = new ol.Map({
                             height: "28"
                         }))
                     })
-	        	})
+	        	})*/
             ]
         })
     ],
@@ -102,45 +102,6 @@ var map = new ol.Map({
         minZoom: 9,
 		extent: [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197]
     })
-});
-
-var element = document.getElementById('popup');
-
-var popup = new ol.Overlay({
-    element: element,
-    positioning: 'bottom-center',
-    stopEvent: false
-});
-map.addOverlay(popup);
-
-map.on('click', function(evt) {
-    $(element).popover('destroy');
-    var feature = map.forEachFeatureAtPixel(evt.pixel,
-        function(feature, layer) {
-            return feature;
-        });
-    if (feature) {
-        var geometry = feature.getGeometry();
-        var coord = geometry.getCoordinates();
-        if(!feature.get('name')){
-            popup.setPosition(coord);
-            $(element).popover({
-                'placement': 'top',
-                'html': true,
-                'content': "Kein Eintrag"
-            });
-            $(element).popover('show');
-        }
-        else {
-            popup.setPosition(coord);
-            $(element).popover({
-                'placement': 'top',
-                'html': true,
-                'content': feature.get('name')
-            });
-            $(element).popover('show');
-        }
-    }
 });
 
 var layerSwitcher = new ol.control.LayerSwitcher();
