@@ -66,7 +66,7 @@ var map = L.map('map', {
 });
 
 var baseMaps = {
-    "Mapbox Satelite": mapbox,
+    "Mapbox Satellite": mapbox,
     "SwissStyle": swissstyle
 };
 

@@ -18,14 +18,12 @@
  			 	Back
 			</a>
 		</div>
-		<form class="form-inline">
-			<select id="type">
-				<option value="None">None</option>
-				<option value="Point">Point</option>
-				<option value="LineString">LineString</option>
-				<option value="Polygon">Polygon</option>
-			</select>
-		</form>
+		<div class="btn-group-vertical" id="edit">
+			<button id="none" type="button" class="btn btn-default" value="None">N</button>
+			<button id="point" type="button" class="btn btn-default" value="Point">M</button>
+			<button id="lineString" type="button" class="btn btn-default" value="LineString">L</button>
+			<button id="polygon" type="button" class="btn btn-default" value="Polygon">P</button>
+		</div>
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://openlayers.org/en/v3.0.0/build/ol.js"></script>

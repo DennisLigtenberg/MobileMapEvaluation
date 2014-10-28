@@ -1,3 +1,5 @@
+
+
 var featureOverlay = new ol.FeatureOverlay({
     style: new ol.style.Style({
         fill: new ol.style.Fill({
@@ -17,37 +19,27 @@ var featureOverlay = new ol.FeatureOverlay({
 });
 featureOverlay.setMap(map);
 
-var typeSelect = document.getElementById('type');
-
 var modify = new ol.interaction.Modify({
-    features: featureOverlay.getFeatures(),
-    deleteCondition: function(event) {
-        return ol.events.condition.shiftKeyOnly(event) &&
-            ol.events.condition.singleClick(event);
-    }
+    features: featureOverlay.getFeatures()
 });
 map.addInteraction(modify);
 
-var draw; // global so we can remove it later
-function addInteraction() {
-    var value = typeSelect.value;
-    if (value !== 'None') {
+var draw;
+function addInteraction(type) {
+    if (type !== 'None') {
         draw = new ol.interaction.Draw({
             features: featureOverlay.getFeatures(),
-            type: /** @type {ol.geom.GeometryType} */ (typeSelect.value)
+            type: /** @type {ol.geom.GeometryType} */ (type)
         });
         map.addInteraction(draw);
     }
 }
 
+$("#none, #point, #lineString, #polygon").click( function()
+    {
+        map.removeInteraction(draw);
+        addInteraction($(this).attr("value"));
+    }
+);
 
-/**
- * Let user change the geometry type.
- * @param {Event} e Change event.
- */
-typeSelect.onchange = function(e) {
-    map.removeInteraction(draw);
-    addInteraction();
-};
-
-addInteraction();
+addInteraction("None");

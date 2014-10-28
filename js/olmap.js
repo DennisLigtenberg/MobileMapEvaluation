@@ -41,7 +41,7 @@ var map = new ol.Map({
                     })
                 }),
                 new ol.layer.Tile({
-                    title: "Mapbox Satelite",
+                    title: "Mapbox Satellite",
                     type: "base",
                     visible: false,
                     source: new ol.source.XYZ({
