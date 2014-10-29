@@ -13,6 +13,11 @@ html, body, #map {
     width: 100%;
 }
 
+.leaflet-vertex-icon.marker-snapped,
+.leaflet-drawing-icon.marker-snapped {
+	opacity: 1!important;
+}
+
 .btn{
 	background:rgba(255,255,255, 1);
 }
@@ -40,4 +45,5 @@ html, body, #map {
 	 position:absolute;
 	 top:150px;
 	 left:5px;
+	background:rgba(255,255,255, 1);
 }

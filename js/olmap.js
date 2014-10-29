@@ -24,7 +24,7 @@ var map = new ol.Map({
     ]),
     layers: [
         new ol.layer.Group({
-            'title': 'Maps',
+            'title': 'Background Layers',
             layers: [
                 new ol.layer.Tile({
                     title: "Swiss Style OSM",
@@ -57,7 +57,7 @@ var map = new ol.Map({
             ]
         }),
         new ol.layer.Group({
-            'title': 'Points',
+            'title': 'Thematic Layers',
             layers: [
                 new ol.layer.Vector({
                     title: "Castles",

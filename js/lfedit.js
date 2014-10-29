@@ -58,6 +58,17 @@ L.NewMarkerControl = L.Control.extend({
     }
 });
 
+var snap = new L.Handler.MarkerSnap(map);
+snap.addGuideLayer(snapLine);
+snap.watchMarker(map.editTools.newClickHandler);
+
+map.on('editable:vertex:dragstart', function (e) {
+    snap.watchMarker(e.vertex);
+});
+map.on('editable:vertex:dragend', function (e) {
+    snap.unwatchMarker(e.vertex);
+});
+
 map.addControl(new L.NewMarkerControl());
 map.addControl(new L.NewLineControl());
 map.addControl(new L.NewPolygonControl());

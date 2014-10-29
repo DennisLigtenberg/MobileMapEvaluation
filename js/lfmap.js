@@ -57,12 +57,24 @@ var p1 = new L.LatLng(45.7300, 5.8000),
     p2 = new L.LatLng(47.9000, 10.600),
     bounds = L.latLngBounds(p1, p2);
 
+var snapLine = L.polyline([
+    [
+        47.34301034806174,
+        8.887939453125
+    ],
+    [
+        47.11593438245697,
+        8.633193969726562
+    ]
+], {color: 'red'});
+
 var map = L.map('map', {
     editable: true,
+    drawControl: true,
     center: [47.2267,8.8167],
     zoom: 11,
     maxBounds: bounds,
-    layers: [swissstyle, castles]
+    layers: [swissstyle, castles, snapLine]
 });
 
 var baseMaps = {
