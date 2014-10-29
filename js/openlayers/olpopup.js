@@ -5,8 +5,8 @@ var popup = new ol.Overlay({
     positioning: 'bottom-center',
     stopEvent: false
 });
-map.addOverlay(popup);
 
+map.addOverlay(popup);
 map.on('click', function(evt) {
     $(element).popover('destroy');
     var feature = map.forEachFeatureAtPixel(evt.pixel,
