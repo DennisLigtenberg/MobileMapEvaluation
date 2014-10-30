@@ -35,6 +35,7 @@ var map = new ol.Map({
 						attributions: [
 	                        new ol.Attribution({
 	                            html: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
+                                '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
                                 '<a href="http://www.hsr.ch/geometalab">By Geometalab --------</a>'
 	                        }),
 	                    ]
@@ -49,6 +50,7 @@ var map = new ol.Map({
                         attributions: [
                             new ol.Attribution({
                                 html: 'Map data &copy; <a href="http://www.mapbox.com/">Mapbox</a> | ' +
+                                '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
                                 '<a href="http://www.hsr.ch/geometalab">By Geometalab --------</a>'
                             }),
                         ]

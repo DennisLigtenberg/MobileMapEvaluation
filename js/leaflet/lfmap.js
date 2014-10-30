@@ -2,12 +2,14 @@ $(document).ready(function() {
     //Initialise tile Layers
     var swissstyle = L.tileLayer("http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png", {
         attribution:  'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
+        '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
         '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
         minZoom: 9
     });
 
     var mapbox = L.tileLayer("http://api.tiles.mapbox.com/v4/sfkeller.k0onh2me/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2ZrZWxsZXIiLCJhIjoia3h4T3pScyJ9.MDLSUwpRpPqaV7SVfGcZDw", {
         attribution:  'Map data &copy; <a href="http://www.mapbox.com">Mapbox</a> | ' +
+        '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
         '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
         minZoom: 9
     });

@@ -28,6 +28,10 @@ html, body, #map {
 	left:50px;
 }
 
+.btn-lg, .btn-group-lg > .btn{
+	font-size: 12px;
+}
+
 #north{
 	position:absolute; 
 	top:16px; 
