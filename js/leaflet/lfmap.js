@@ -26,6 +26,20 @@ $(document).ready(function() {
         ]
     ], {color: 'red'});
 
+    var road = new L.LayerGroup();
+
+    $.getJSON("geojson/daten.geojson", function(data) {
+        var jsoncastles = L.geoJson(data, {
+            onEachFeature: function (feature, layer) {
+            },
+            pointToLayer: function (feature, latlng) {
+                return L.polyline(latlng);
+            }
+        });
+        jsoncastles.addTo(road);
+    });
+
+
     //Mapbounds
     var p1 = new L.LatLng(45.7300, 5.8000),
         p2 = new L.LatLng(47.9000, 10.600),
@@ -60,13 +74,14 @@ $(document).ready(function() {
     //Setting elements of Thematic Layer group
     var overlay = {
         "Castles": castles,
-        "Restaurants": restaurants
+        "Restaurants": restaurants,
+        "Road": road
     };
 
 
     //Enabling snapping for Feature editing/creation
     var snap = new L.Handler.MarkerSnap(map);
-    snap.addGuideLayer(snapLine);
+    snap.addGuideLayer(road);
     snap.watchMarker(map.editTools.newClickHandler);
     map.on('editable:vertex:dragstart', function (e) {
         snap.watchMarker(e.vertex);
