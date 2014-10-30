@@ -1,5 +1,18 @@
 $(document).ready(function() {
+    //Initialise tile Layers
+    var swissstyle = L.tileLayer("http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png", {
+        attribution:  'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
+        '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
+        minZoom: 9
+    });
 
+    var mapbox = L.tileLayer("http://api.tiles.mapbox.com/v4/sfkeller.k0onh2me/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2ZrZWxsZXIiLCJhIjoia3h4T3pScyJ9.MDLSUwpRpPqaV7SVfGcZDw", {
+        attribution:  'Map data &copy; <a href="http://www.mapbox.com">Mapbox</a> | ' +
+        '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
+        minZoom: 9
+    });
+
+    //Line for testing snapping
     var snapLine = L.polyline([
         [
             47.34301034806174,
@@ -11,18 +24,12 @@ $(document).ready(function() {
         ]
     ], {color: 'red'});
 
-    var swissstyle = addTileLayer("http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png",
-        'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
-        '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>', 9);
-
-    var mapbox = addTileLayer('http://api.tiles.mapbox.com/v4/sfkeller.k0onh2me/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2ZrZWxsZXIiLCJhIjoia3h4T3pScyJ9.MDLSUwpRpPqaV7SVfGcZDw',
-        'Map data &copy; <a href="http://www.mapbox.com">Mapbox</a> | ' +
-        '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>', 9)
-
+    //Mapbounds
     var p1 = new L.LatLng(45.7300, 5.8000),
         p2 = new L.LatLng(47.9000, 10.600),
         bounds = L.latLngBounds(p1, p2);
 
+    //Loading geojson files
     var castles = new L.LayerGroup();
     var castleIcon = L.icon({
         iconUrl: 'img/Castle.png',
@@ -32,7 +39,7 @@ $(document).ready(function() {
 
     var restaurants = new L.LayerGroup();
 
-
+    //Initialising map
     var map = L.map('map', {
         editable: true,
         drawControl: true,
@@ -42,17 +49,20 @@ $(document).ready(function() {
         layers: [swissstyle, castles, snapLine]
     });
 
+    //Setting elements of Background Layer group
     var baseMaps = {
         "Mapbox Satellite": mapbox,
         "SwissStyle": swissstyle
     };
 
+    //Setting elements of Thematic Layer group
     var overlay = {
         "Castles": castles,
         "Restaurants": restaurants
     };
 
 
+    //Enabling snapping for Feature editing/creation
     var snap = new L.Handler.MarkerSnap(map);
     snap.addGuideLayer(snapLine);
     snap.watchMarker(map.editTools.newClickHandler);
@@ -63,16 +73,19 @@ $(document).ready(function() {
         snap.unwatchMarker(e.vertex);
     });
 
+    //Loaging spinner
+    var loadingControl = L.Control.loading({
+        spinjs: true
+    });
 
+    //Creating control buttons
     L.FitBounds = addFitBounds(bounds);
     L.polygonControl = addPolygonControl();
     L.lineControl = addLineControl();
     L.markerControl = addMarkerControl();
 
-    var loadingControl = L.Control.loading({
-        spinjs: true
-    });
 
+    //Adding controll buttons
     map.addControl(loadingControl);
     map.addControl(new L.FitBounds());
     L.control.mousePosition().addTo(map);
