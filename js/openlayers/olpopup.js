@@ -17,15 +17,15 @@ map.on('click', function(evt) {
     if (feature) {
         var geometry = feature.getGeometry();
         var coord = geometry.getCoordinates();
-            if (!feature.get('name')) {
-            } else {
-                popup.setPosition(coord);
-                $(element).popover({
-                    'placement': 'top',
-                    'html': true,
-                    'content': feature.get('name')
-                });
-                $(element).popover('show');
-            }
+        if (!feature.get('name')) {
+        } else {
+            popup.setPosition(coord);
+            $(element).popover({
+                'placement': 'top',
+                'html': true,
+                'content': feature.get('name')
+            });
+            $(element).popover('show');
+        }
     }
 });

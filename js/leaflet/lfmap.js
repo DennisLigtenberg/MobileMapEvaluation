@@ -4,16 +4,17 @@ $(document).ready(function() {
         attribution:  'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
         '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
         '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
-        minZoom: 9
+        minZoom: 8
     });
 
     var mapbox = L.tileLayer("http://api.tiles.mapbox.com/v4/sfkeller.k0onh2me/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2ZrZWxsZXIiLCJhIjoia3h4T3pScyJ9.MDLSUwpRpPqaV7SVfGcZDw", {
         attribution:  'Map data &copy; <a href="http://www.mapbox.com">Mapbox</a> | ' +
         '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
         '<a href="http://www.hsr.ch/geometalab">By GeometaLab</a>',
-        minZoom: 9
+        minZoom: 8
     });
 
+    //Loading geojson files
     var road = new L.LayerGroup();
 
     $.getJSON("geojson/daten.geojson", function(data) {
@@ -72,11 +73,6 @@ $(document).ready(function() {
     });
     map.on('editable:vertex:dragend', function (e) {
         snap.unwatchMarker(e.vertex);
-    });
-
-    map.on('editable:editing', function (e){
-        e.layer.options.color = 'DarkRed';
-        e.layer._updateStyle();
     });
 
     //Loaging spinner
