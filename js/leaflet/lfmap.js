@@ -35,8 +35,6 @@ $(document).ready(function() {
     });
     var castles =  loadGeojson("geojson/castles.geojson",castles, castleIcon);
 
-    var restaurants = new L.LayerGroup();
-
     //Mapbounds
     var p1 = new L.LatLng(45.7300, 5.8000),
         p2 = new L.LatLng(47.9000, 10.600),
@@ -61,8 +59,7 @@ $(document).ready(function() {
     //Setting elements of Thematic Layer group
     var overlay = {
         "Castles": castles,
-        "Restaurants": restaurants,
-        "Road": road
+        "Roads": road
     };
 
 
@@ -75,6 +72,11 @@ $(document).ready(function() {
     });
     map.on('editable:vertex:dragend', function (e) {
         snap.unwatchMarker(e.vertex);
+    });
+
+    map.on('editable:editing', function (e){
+        e.layer.options.color = 'DarkRed';
+        e.layer._updateStyle();
     });
 
     //Loaging spinner

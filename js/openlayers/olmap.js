@@ -62,6 +62,12 @@ var map = new ol.Map({
                 'title': 'Thematic Layers',
                 layers: [
                     new ol.layer.Vector({
+                        visible: false,
+                        title: "Roads",
+                        source: new ol.source.GeoJSON({
+                        })
+                    }),
+                    new ol.layer.Vector({
                         title: "Castles",
                         source: new ol.source.GeoJSON({
                             url: 'geojson/castles.geojson',
@@ -77,25 +83,6 @@ var map = new ol.Map({
                             }))
                         })
                     }),
-                    /*
-                     new ol.layer.Vector({
-                     title: "Restaurants",
-                     visible: false,
-                     source: new ol.source.GeoJSON({
-                     url:'geojson/restaurants.geojson',
-                     projection: 'EPSG:3857'
-                     }),
-                     style: new ol.style.Style({
-                     image: new ol.style.Icon( ({
-                     anchorXUnits: 'pixels',
-                     anchorYUnits: 'pixels',
-                     src: "img/Restaurant.png",
-                     width: "28",
-                     height: "28"
-                     }))
-                     })
-                     })*/
-
                 ]
             })
         ],
