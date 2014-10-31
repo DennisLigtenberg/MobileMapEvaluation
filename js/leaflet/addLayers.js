@@ -6,7 +6,7 @@ var loadGeojson = function(filepath, layergoup, icon){
                     layer.bindPopup(feature.properties.name);
                 }
                 else{
-                    layer.bindPopup("Kein Eintrag");
+                    layer.bindPopup("Ohne Namen");
                 }
             },
             pointToLayer: function (feature, latlng) {

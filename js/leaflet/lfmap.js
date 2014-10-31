@@ -1,4 +1,10 @@
 $(document).ready(function() {
+
+    var params = {};
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(x, key, value) {
+        params[key] = value;
+    });
+
     //Initialise tile Layers
     var swissstyle = L.tileLayer("http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png", {
         attribution:  'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
@@ -45,8 +51,8 @@ $(document).ready(function() {
     var map = L.map('map', {
         editable: true,
         drawControl: true,
-        center: [47.2267,8.8167],
-        zoom: 8,
+        center: [params.lat || 47.2267, params.lng || 8.8167],
+        zoom: params.zoom || 8,
         maxBounds: bounds,
         layers: [swissstyle]
     });

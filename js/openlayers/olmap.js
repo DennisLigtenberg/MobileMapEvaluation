@@ -1,3 +1,9 @@
+//?lat=47.31605&lng=8.53228&zoom=16
+var params = {};
+window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(x, key, value) {
+    params[key] = value;
+});
+
 var map = new ol.Map({
         target: 'map',
         interactions: ol.interaction.defaults().extend([
@@ -87,7 +93,7 @@ var map = new ol.Map({
             })
         ],
         view: new ol.View({
-            center: ol.proj.transform([8.8167, 47.2267], 'EPSG:4326', 'EPSG:3857'),
+            center: ol.proj.transform([params.lng || 8.8167, params.lat || 47.2267], 'EPSG:4326', 'EPSG:3857'),
             zoom: 13,
             minZoom: 8,
             extent: [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197]

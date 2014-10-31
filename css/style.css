@@ -38,15 +38,11 @@ html, body, #map {
 	color: #fff;
 }
 
-
-a {
-	color: #fff;
-}
-
 .olSwitch{
 	font-size: 1.14em;
 	background-color: rgba(0, 60, 136, 0.5);
 	font-family: "Lucida Grande",Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
+	color: #fff;
 }
 
 #north{
