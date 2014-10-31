@@ -14,18 +14,6 @@ $(document).ready(function() {
         minZoom: 9
     });
 
-    //Line for testing snapping
-    var snapLine = L.polyline([
-        [
-            47.34301034806174,
-            8.887939453125
-        ],
-        [
-            47.11593438245697,
-            8.633193969726562
-        ]
-    ], {color: 'red'});
-
     var road = new L.LayerGroup();
 
     $.getJSON("geojson/daten.geojson", function(data) {
@@ -62,7 +50,7 @@ $(document).ready(function() {
         center: [47.2267,8.8167],
         zoom: 11,
         maxBounds: bounds,
-        layers: [swissstyle, castles, snapLine]
+        layers: [swissstyle, castles]
     });
 
     //Setting elements of Background Layer group
