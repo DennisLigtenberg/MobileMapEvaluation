@@ -10,7 +10,7 @@ var addPolygonControl = function(){
                 link = L.DomUtil.create('a', '', container);
             link.href = '#';
             link.title = 'Create a new polygon';
-            link.innerHTML = '▱';
+            link.innerHTML = '□';
             L.DomEvent.on(link, 'click', L.DomEvent.stop)
                 .on(link, 'click', function() {
                     map.editTools.startPolygon();
@@ -56,7 +56,7 @@ var addMarkerControl = function() {
 
             link.href = '#';
             link.title = 'Add a new marker';
-            link.innerHTML = '⚫';
+            link.innerHTML = '●';
             L.DomEvent.on(link, 'click', L.DomEvent.stop)
                 .on(link, 'click', function () {
                     map.editTools.startMarker();
