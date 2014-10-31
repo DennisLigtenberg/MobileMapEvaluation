@@ -27,12 +27,6 @@ $(document).ready(function() {
         jsoncastles.addTo(road);
     });
 
-
-    //Mapbounds
-    var p1 = new L.LatLng(45.7300, 5.8000),
-        p2 = new L.LatLng(47.9000, 10.600),
-        bounds = L.latLngBounds(p1, p2);
-
     //Loading geojson files
     var castles = new L.LayerGroup();
     var castleIcon = L.icon({
@@ -42,6 +36,11 @@ $(document).ready(function() {
     var castles =  loadGeojson("geojson/castles.geojson",castles, castleIcon);
 
     var restaurants = new L.LayerGroup();
+
+    //Mapbounds
+    var p1 = new L.LatLng(45.7300, 5.8000),
+        p2 = new L.LatLng(47.9000, 10.600),
+        bounds = L.latLngBounds(p1, p2);
 
     //Initialising map
     var map = L.map('map', {
