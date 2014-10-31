@@ -18,18 +18,35 @@ html, body, #map {
 	opacity: 1!important;
 }
 
-.btn{
-	background:rgba(255,255,255, 1);
-}
-
-#back{
-	position:absolute; 
-	top:10px; 
+#lfSwitch{
+	position:absolute;
+	top:10px;
 	left:50px;
 }
 
-.backBtn{
+.lfSwitch{
 	font-size: 12px;
+}
+
+#olSwitch{
+	position:absolute; 
+	top:10px; 
+	left:50px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.4);
+	padding: 3px;
+	color: #fff;
+}
+
+
+a {
+	color: #fff;
+}
+
+.olSwitch{
+	font-size: 1.14em;
+	background-color: rgba(0, 60, 136, 0.5);
+	font-family: "Lucida Grande",Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
 }
 
 #north{
@@ -66,10 +83,6 @@ html, body, #map {
 	background-color: rgba(0, 60, 136, 0.5);
 }
 
-.layer-switcher .panel{
-	background-color: rgba(0, 60, 136, 0.5);
-}
-
 .title{
 	position:absolute;
 	display: block;
@@ -85,18 +98,7 @@ html, body, #map {
 	border-bottom-left-radius:8px;
 	border-bottom-right-radius:8px;
  }
-.titleOl{
-	position:absolute;
-	display: block;
-	top:0px;
-	left:0px;
-	right:0px;
+
+.olTitle{
 	width: 164px;
-	margin-left: auto;
-	margin-right: auto;
-	text-align:center;
-	background-color:rgba(255,255,255, 0.9);
-	font-size:25px;
-	border-bottom-left-radius:8px;
-	border-bottom-right-radius:8px;
 }
