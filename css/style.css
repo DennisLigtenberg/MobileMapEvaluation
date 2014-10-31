@@ -50,12 +50,16 @@ html, body, #map {
 	top:120px;
 	left: 0.4em;
 	border-radius: 4px;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+	background-color: rgba(255, 255, 255, 0.4);
+	padding: 2px;
 }
 
 .editBtn{
-	padding: 3px 9px;
-	font-size: 12px;
+	padding: 0px 6px;
+	background-color: rgba(0, 60, 136, 0.5);
+	color: #fff;
+	font-family: "Lucida Grande",Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
+	font-size:  1.14em;
 }
 
 .title{
