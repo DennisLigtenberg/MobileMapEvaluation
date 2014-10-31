@@ -46,9 +46,9 @@ $(document).ready(function() {
         editable: true,
         drawControl: true,
         center: [47.2267,8.8167],
-        zoom: 11,
+        zoom: 8,
         maxBounds: bounds,
-        layers: [swissstyle, castles]
+        layers: [swissstyle]
     });
 
     //Setting elements of Background Layer group
@@ -74,6 +74,11 @@ $(document).ready(function() {
     map.on('editable:vertex:dragend', function (e) {
         snap.unwatchMarker(e.vertex);
     });
+
+    map.on('zoomend', function(e){
+        if (map.getZoom() < 9 ){map.removeLayer(castles)}
+        else if (map.getZoom() >= 9 ){map.addLayer(castles)}
+    })
 
     //Loaging spinner
     var loadingControl = L.Control.loading({
