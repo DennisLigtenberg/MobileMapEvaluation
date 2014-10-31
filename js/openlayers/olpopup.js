@@ -19,9 +19,7 @@ map.on('click', function(evt) {
         if(!feature.get('name')){
             popup.setPosition(coord);
             $(element).popover({
-                'placement': 'top',
-                'html': true,
-                'content': "Kein Eintrag"
+
             });
             $(element).popover('show');
         }

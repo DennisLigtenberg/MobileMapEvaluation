@@ -10,7 +10,7 @@ var addPolygonControl = function(){
                 link = L.DomUtil.create('a', '', container);
             link.href = '#';
             link.title = 'Create a new polygon';
-            link.innerHTML = 'P';
+            link.innerHTML = '▱';
             L.DomEvent.on(link, 'click', L.DomEvent.stop)
                 .on(link, 'click', function() {
                     map.editTools.startPolygon();
@@ -33,7 +33,7 @@ var addLineControl  = function(){
 
             link.href = '#';
             link.title = 'Create a new line';
-            link.innerHTML = 'L';
+            link.innerHTML = '/';
             L.DomEvent.on(link, 'click', L.DomEvent.stop)
                 .on(link, 'click', function () {
                     map.editTools.startPolyline();
@@ -56,7 +56,7 @@ var addMarkerControl = function() {
 
             link.href = '#';
             link.title = 'Add a new marker';
-            link.innerHTML = 'M';
+            link.innerHTML = '⚫';
             L.DomEvent.on(link, 'click', L.DomEvent.stop)
                 .on(link, 'click', function () {
                     map.editTools.startMarker();
@@ -91,4 +91,4 @@ var addFitBounds = function(bounds) {
         }
     });
     return L.FitBounds;
-}
+};

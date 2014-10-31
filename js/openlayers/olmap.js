@@ -68,7 +68,7 @@ var map = new ol.Map({
                         projection: 'EPSG:3857'
                     }),
                     style: new ol.style.Style({
-                        image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+                        image: new ol.style.Icon( ({
                             anchorXUnits: 'pixels',
                             anchorYUnits: 'pixels',
                             src: "img/Castle.png",
@@ -86,7 +86,7 @@ var map = new ol.Map({
  						projection: 'EPSG:3857'
  					}),
                      style: new ol.style.Style({
-                        image: new ol.style.Icon( /** @type {olx.style.IconOptions} *//* ({
+                        image: new ol.style.Icon( ({
                             anchorXUnits: 'pixels',
                             anchorYUnits: 'pixels',
                             src: "img/Restaurant.png",

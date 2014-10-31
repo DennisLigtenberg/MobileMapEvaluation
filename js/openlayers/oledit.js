@@ -1,5 +1,3 @@
-
-
 var featureOverlay = new ol.FeatureOverlay({
     style: new ol.style.Style({
         fill: new ol.style.Fill({
@@ -29,7 +27,7 @@ function addInteraction(type) {
     if (type !== 'None') {
         draw = new ol.interaction.Draw({
             features: featureOverlay.getFeatures(),
-            type: /** @type {ol.geom.GeometryType} */ (type)
+            type: (type)
         });
         map.addInteraction(draw);
     }
