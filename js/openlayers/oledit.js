@@ -23,6 +23,7 @@ var modify = new ol.interaction.Modify({
 map.addInteraction(modify);
 
 var draw;
+
 function addInteraction(type) {
     if (type !== 'None') {
         draw = new ol.interaction.Draw({
@@ -33,11 +34,8 @@ function addInteraction(type) {
     }
 }
 
-$("#none, #point, #lineString, #polygon").click( function()
-    {
-        map.removeInteraction(draw);
-        addInteraction($(this).attr("value"));
-    }
-);
-
+$("#none, #point, #lineString, #polygon").click(function() {
+    map.removeInteraction(draw);
+    addInteraction($(this).attr("value"));
+});
 addInteraction("None");
