@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     var params = {};
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(x, key, value) {
-        params[key] = value;
+        params[key] = Number(value);
     });
 
     //Initialise tile Layers
