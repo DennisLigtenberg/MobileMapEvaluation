@@ -13,17 +13,18 @@ map.on('click', function(evt) {
         function(feature, layer) {
             return feature;
         });
-
     if (feature) {
-        var geometry = feature.getGeometry();
-        var coord = geometry.getCoordinates();
+        if (typeof feature.get('name') != 'undefined') {
+            var geometry = feature.getGeometry();
+            var coord = geometry.getCoordinates();
 
-        popup.setPosition(coord);
-        $(element).popover({
-            'placement': 'top',
-            'html': true,
-            'content': feature.get('name') ? feature.get('name') : "Ohne Namen"
-        });
-        $(element).popover('show');
+            popup.setPosition(coord);
+            $(element).popover({
+                'placement': 'top',
+                'html': true,
+                'content': feature.get('name') ? feature.get('name') : "Ohne Namen"
+            });
+            $(element).popover('show');
+        }
     }
 });
