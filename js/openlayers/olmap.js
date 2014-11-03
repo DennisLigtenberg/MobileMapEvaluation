@@ -9,7 +9,7 @@ var map = new ol.Map({
         new ol.interaction.DragRotateAndZoom()
     ]),
     controls: ol.control.defaults({
-        attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+        attributionOptions: ({
             collapsible: false
         })
     }).extend([
@@ -39,11 +39,6 @@ var map = new ol.Map({
             'title': 'Thematic Layers',
             maxResolution: 611.49622628141,
             layers: [
-                new ol.layer.Vector({
-                    visible: false,
-                    title: "Roads",
-                    source: new ol.source.GeoJSON({})
-                }),
                 loadGeoJson("Castles", geoJsonCastle, "EPSG:3857", castleIcon),
             ]
         })
