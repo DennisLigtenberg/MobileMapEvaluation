@@ -58,6 +58,11 @@ html, body, #map {
 	right:auto;
 	bottom: 10px;
 }
+
+.ol-attribution ul{
+	font-size: 1rem;
+}
+
 #edit{
 	position:absolute;
 	top:120px;

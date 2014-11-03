@@ -1,4 +1,4 @@
-var params = {}
+var params = {};
 window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(x, key, value) {
     params[key] = Number(value);
 });
@@ -31,35 +31,8 @@ var map = new ol.Map({
         new ol.layer.Group({
             'title': 'Background Layers',
             layers: [
-                new ol.layer.Tile({
-                    title: "Swiss Style OSM",
-                    type: "base",
-                    source: new ol.source.XYZ({
-                        url: 'http://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png',
-                        attributions: [
-                            new ol.Attribution({
-                                html: 'Map data &copy; <a href="http://www.osm.ch/">osm.ch</a> | ' +
-                                '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
-                                '<a href="http://www.hsr.ch/geometalab">By Geometalab --------</a>'
-                            }),
-                        ]
-                    })
-                }),
-                new ol.layer.Tile({
-                    title: "Mapbox Satellite",
-                    type: "base",
-                    visible: false,
-                    source: new ol.source.XYZ({
-                        url: 'http://a.tiles.mapbox.com/v3/tmcw.map-j5fsp01s/{z}/{x}/{y}.png',
-                        attributions: [
-                            new ol.Attribution({
-                                html: 'Map data &copy; <a href="http://www.mapbox.com/">Mapbox</a> | ' +
-                                '<a href="http://giswiki.hsr.ch/Webmapping_Clients">About</a> | ' +
-                                '<a href="http://www.hsr.ch/geometalab">By Geometalab --------</a>'
-                            }),
-                        ]
-                    })
-                }),
+                createLayer(true, osmName, osmSrc, createAttribution(osmAttributionText, osmAttributionUrl)),
+                createLayer(false, mapboxName, mapboxSrc, createAttribution(mapboxAttributionText, mapboxAttributionUrl)),
             ]
         }),
         new ol.layer.Group({
@@ -71,22 +44,7 @@ var map = new ol.Map({
                     title: "Roads",
                     source: new ol.source.GeoJSON({})
                 }),
-                new ol.layer.Vector({
-                    title: "Castles",
-                    source: new ol.source.GeoJSON({
-                        url: 'geojson/castles.geojson',
-                        projection: 'EPSG:3857'
-                    }),
-                    style: new ol.style.Style({
-                        image: new ol.style.Icon(({
-                            anchorXUnits: 'pixels',
-                            anchorYUnits: 'pixels',
-                            src: "img/Castle.png",
-                            width: "28",
-                            height: "28"
-                        }))
-                    })
-                }),
+                loadGeoJson("Castles", geoJsonCastle, "EPSG:3857", castleIcon),
             ]
         })
     ],

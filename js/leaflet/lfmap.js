@@ -16,11 +16,11 @@ $(document).ready(function() {
         road =  loadGeojson(src ,road, "");
 
     var castles = new L.LayerGroup(),
-        castleIcon = L.icon({
-            iconUrl: 'img/Castle.png',
+        layerIcon = L.icon({
+            iconUrl: castleIcon,
             iconSize: [28, 28]
         }),
-        castles =  loadGeojson(geoJsonCastle,castles, castleIcon);
+        castles =  loadGeojson(geoJsonCastle,castles, layerIcon);
 
     var p1 = new L.LatLng(45.7300, 5.8000),
         p2 = new L.LatLng(47.9000, 10.600),
@@ -37,7 +37,7 @@ $(document).ready(function() {
 
     var baseMaps = {
         "Mapbox Satellite": mapbox,
-        "SwissStyle": swissstyle
+        "Swiss Style OSM": swissstyle
     };
 
     var overlay = {
@@ -76,7 +76,6 @@ $(document).ready(function() {
     L.control.mousePosition().addTo(map);
     L.control.scale({imperial: false}).addTo(map);
     L.control.layers(baseMaps, overlay).addTo(map);
-    map.addControl(loadingControl);
     map.addControl(new L.FitBounds());
     map.addControl(new L.markerControl());
     map.addControl(new L.lineControl());
