@@ -19,10 +19,10 @@ var createAttribution = function(mapdesc, mapsrc){
         "<a href='http://www.hsr.ch/geometalab'>By GeometaLab</a>";
 }
 
-var addTileLayer = function(src, attribution, zoom){
+var addTileLayer = function(src, attribution){
     var layer = L.tileLayer(src, {
         attribution: attribution,
-        minZoom: zoom
+        minZoom: minZoom
     });
     return layer
 };

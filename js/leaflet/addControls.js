@@ -1,71 +1,24 @@
-
-var addPolygonControl = function(){
-    L.NewPolygonControl = L.Control.extend({
+var addControl = function(position, hoverText, buttonText, onClick){
+    L.NewControl = L.Control.extend({
 
         options: {
-            position: 'topleft'
+            position: position
         },
         onAdd: function(map) {
             var container = L.DomUtil.create('div', 'leaflet-control leaflet-bar'),
                 link = L.DomUtil.create('a', '', container);
             link.href = '#';
-            link.title = 'Create a new polygon';
-            link.innerHTML = '□';
+            link.title = hoverText;
+            link.innerHTML = buttonText;
             L.DomEvent.on(link, 'click', L.DomEvent.stop)
                 .on(link, 'click', function() {
-                    map.editTools.startPolygon();
+                    eval(onClick);
                 });
 
             return container;
         }
     });
-    return L.NewPolygonControl;
-};
-
-var addLineControl  = function(){
-    L.NewLineControl = L.Control.extend({
-        options: {
-            position: 'topleft'
-        },
-        onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-control leaflet-bar'),
-                link = L.DomUtil.create('a', '', container);
-
-            link.href = '#';
-            link.title = 'Create a new line';
-            link.innerHTML = '/';
-            L.DomEvent.on(link, 'click', L.DomEvent.stop)
-                .on(link, 'click', function () {
-                    map.editTools.startPolyline();
-                });
-
-            return container;
-        }
-    });
-    return L.NewLineControl;
-};
-
-var addMarkerControl = function() {
-    L.NewMarkerControl = L.Control.extend({
-        options: {
-            position: 'topleft'
-        },
-        onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-control leaflet-bar'),
-                link = L.DomUtil.create('a', '', container);
-
-            link.href = '#';
-            link.title = 'Add a new marker';
-            link.innerHTML = '●';
-            L.DomEvent.on(link, 'click', L.DomEvent.stop)
-                .on(link, 'click', function () {
-                    map.editTools.startMarker();
-                });
-
-            return container;
-        }
-    });
-    return L.NewMarkerControl;
+    return L.NewControl;
 };
 
 var addFitBounds = function(bounds) {

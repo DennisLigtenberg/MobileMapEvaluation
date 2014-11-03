@@ -5,9 +5,11 @@ $(document).ready(function() {
         params[key] = Number(value);
     });
 
-    var swissstyle = addTileLayer(osmSrc, osmAttribution, osmZoom);
+    var osmAttribution = createAttribution(osmAttributionUrl, osmAttributionText);
+    var swissstyle = addTileLayer(osmSrc, osmAttribution);
 
-    var mapbox = addTileLayer(mapboxSrc, mapboxAttribution, mapboxZoom);
+    var mapboxAttribution = createAttribution(mapboxAttributionUrl, mapboxAttributionText);
+    var mapbox = addTileLayer(mapboxSrc, mapboxAttribution);
 
     var road = new L.LayerGroup(),
         src = ("geojson/daten.geojson")
@@ -67,16 +69,15 @@ $(document).ready(function() {
     });
 
     L.FitBounds = addFitBounds(bounds);
-    L.polygonControl = addPolygonControl();
-    L.lineControl = addLineControl();
-    L.markerControl = addMarkerControl();
+    L.polygonControl = addControl("topleft", "Create a new polygon", "□", "map.editTools.startPolygon()");
+    L.lineControl = addControl("topleft", "Create a new line", "/", "map.editTools.startPolyline()");
+    L.markerControl = addControl("topleft", "Create a new marker", "●", "map.editTools.startMarker()");
 
-
-    map.addControl(loadingControl);
-    map.addControl(new L.FitBounds());
     L.control.mousePosition().addTo(map);
     L.control.scale({imperial: false}).addTo(map);
     L.control.layers(baseMaps, overlay).addTo(map);
+    map.addControl(loadingControl);
+    map.addControl(new L.FitBounds());
     map.addControl(new L.markerControl());
     map.addControl(new L.lineControl());
     map.addControl(new L.polygonControl());
