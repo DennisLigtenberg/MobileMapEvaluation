@@ -13,6 +13,11 @@ html, body, #map {
     width: 100%;
 }
 
+a{
+	color:inherit;
+	text-decoration: none;
+}
+
 .leaflet-vertex-icon.marker-snapped,
 .leaflet-drawing-icon.marker-snapped {
 	opacity: 1!important;

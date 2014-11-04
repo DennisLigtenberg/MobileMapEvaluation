@@ -23,3 +23,5 @@ centerLng = 8.8167;
 //castles source and icon url
 var geoJsonCastle = "geojson/castles.geojson";
 var castleIcon = "img/Castle.png";
+
+var geoJsonRoad = "geojson/road.geojson";

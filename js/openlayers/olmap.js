@@ -43,6 +43,7 @@ $(document).ready(function() {
                 maxResolution: 611.49622628141,
                 layers: [
                     loadGeoJson("Castles", geoJsonCastle, "EPSG:3857", castleIcon),
+                    loadGeoJson("Roads", geoJsonRoad, "EPSG:3857", ""),
                 ]
             })
         ],
@@ -85,9 +86,11 @@ $(document).ready(function() {
     addInteraction("None", draw, featureOverlay);
 
     map.on('moveend', function(evt){
-        //var coords = map.getEventCoordinate(evt)
-        //console.log(ol.proj.transform(coords, 'EPSG:4326', 'EPSG:3857'));
-       // $(".title").html("<a href='index.html?lat=" + center.lat + "&" + center.lng + "&zoom=" + zoom + "'>Leaflet 0.7.3</a>");
+        var coords = map.getView().getCenter();
+        var zoom = map.getView().getZoom();
+        coords = ol.proj.transform(coords, 'EPSG:3857', 'EPSG:4326');
+        $(".olSwitch").html("<a href='index.html?lat=" + coords[0] + "&lng=" + coords[1] + "&zoom=" + zoom + "'>Lf</a>");
+        $(".olTitle").html("<a href='openlayers.html?lat=" + coords[1] + "&lng=" + coords[0] + "&zoom=" + zoom + "'>OpenLayers 3.0.0</a>");
     });
 
     var element = document.getElementById('popup');

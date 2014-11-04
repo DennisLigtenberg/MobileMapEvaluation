@@ -12,7 +12,7 @@ $(document).ready(function() {
     var mapbox = addTileLayer(mapboxSrc, mapboxAttribution);
 
     var road = new L.LayerGroup(),
-        src = ("geojson/daten.geojson")
+        src = (geoJsonRoad)
         road =  loadGeojson(src ,road, "");
 
     var castles = new L.LayerGroup(),
@@ -47,8 +47,8 @@ $(document).ready(function() {
     map.on('move', function(){
         var center = map.getCenter(),
             zoom = map.getZoom();
-        $(".lfSwitch").html("<a href='openlayers.html?lat=" + center.lat + "&" + center.lng + "&zoom=" + zoom + "'>OL</a>");
-        $(".title").html("<a href='index.html?lat=" + center.lat + "&" + center.lng + "&zoom=" + zoom + "'>Leaflet 0.7.3</a>");
+        $(".lfSwitch").prop("href", "openlayers.html?lat=" + center.lat + "&lng=" + center.lng + "&zoom=" + zoom + "");
+        $(".lfTitle").prop("href", "index.html?lat=" + center.lat + "&lng=" + center.lng + "&zoom=" + zoom + "");
     });
 
     //enabling snapping for Feature editing/creation
