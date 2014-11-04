@@ -12,8 +12,13 @@ var osmAttributionText = "osm.ch";
 var mapboxAttributionUrl = "http://www.mapbox.com";
 var mapboxAttributionText = "Mapbox";
 
-//minimal layer zoom level
+//minimal/start layer zoom level
 var minZoom = 8;
+var startZoom = 8;
+
+//center
+centerLat = 47.2267;
+centerLng = 8.8167;
 
 //castles source and icon url
 var geoJsonCastle = "geojson/castles.geojson";

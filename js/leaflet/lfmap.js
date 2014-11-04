@@ -2,7 +2,7 @@ $(document).ready(function() {
     //get coordinates and zoom from URL
     var params = {};
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(x, key, value) {
-        params[key] = Number(value);
+        params[key] = value;
     });
 
     var osmAttribution = createAttribution(osmAttributionUrl, osmAttributionText);
@@ -28,9 +28,8 @@ $(document).ready(function() {
 
     var map = L.map('map', {
         editable: true,
-        drawControl: true,
-        center: [params.lat || 47.2267, params.lng || 8.8167],
-        zoom: params.zoom || 8,
+        center: [params.lat || centerLat, params.lng || centerLng],
+        zoom: params.zoom || startZoom,
         maxBounds: bounds,
         layers: [swissstyle]
     });
@@ -45,6 +44,12 @@ $(document).ready(function() {
         "Roads": road
     };
 
+    map.on('move', function(){
+        var center = map.getCenter(),
+            zoom = map.getZoom();
+        $(".lfSwitch").html("<a href='openlayers.html?lat=" + center.lat + "&" + center.lng + "&zoom=" + zoom + "'>OL</a>");
+        $(".title").html("<a href='index.html?lat=" + center.lat + "&" + center.lng + "&zoom=" + zoom + "'>Leaflet 0.7.3</a>");
+    });
 
     //enabling snapping for Feature editing/creation
     var snap = new L.Handler.MarkerSnap(map);
@@ -59,8 +64,8 @@ $(document).ready(function() {
 
     //only show castles from zoom level 9
     map.on('zoomend', function(e){
-        if (map.getZoom() < 9 ){map.removeLayer(castles)}
-        else if (map.getZoom() >= 9 ){map.addLayer(castles)}
+        if (map.getZoom() == 8){map.removeLayer(castles)}
+        else if (map.getZoom() == 9){map.addLayer(castles)}
     })
 
     //loading spinner
