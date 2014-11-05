@@ -10,7 +10,9 @@ $(document).ready(function() {
     var map = new ol.Map({
         target: 'map',
         interactions: ol.interaction.defaults().extend([
-            new ol.interaction.DragRotateAndZoom()
+           new ol.interaction.DragRotateAndZoom({
+               condition: ol.events.condition.altKeyOnly
+           })
         ]),
         controls: ol.control.defaults({
             attributionOptions: ({
