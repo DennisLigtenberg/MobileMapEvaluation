@@ -103,6 +103,7 @@ $(document).ready(function() {
         stopEvent: false
     });
 
+    //popup zu den features hinzufügen
     map.addOverlay(popup);
 
     map.on('click', function (evt) {
