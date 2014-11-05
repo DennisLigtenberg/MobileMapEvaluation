@@ -5,6 +5,7 @@ $(document).ready(function() {
         params[key] = Number(value);
     });
 
+
     //initialize map
     var map = new ol.Map({
         target: 'map',
@@ -54,6 +55,9 @@ $(document).ready(function() {
             extent: [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197]
         })
     });
+
+    updateLink(map);
+
     var layerSwitcher = new ol.control.LayerSwitcher();
     map.addControl(layerSwitcher);
 
@@ -85,12 +89,8 @@ $(document).ready(function() {
 
     addInteraction("None", draw, featureOverlay);
 
-    map.on('moveend', function(evt){
-        var coords = map.getView().getCenter();
-        var zoom = map.getView().getZoom();
-        coords = ol.proj.transform(coords, 'EPSG:3857', 'EPSG:4326');
-        $(".olSwitch").html("<a href='index.html?lat=" + coords[0] + "&lng=" + coords[1] + "&zoom=" + zoom + "'>Lf</a>");
-        $(".olTitle").html("<a href='openlayers.html?lat=" + coords[1] + "&lng=" + coords[0] + "&zoom=" + zoom + "'>OpenLayers 3.0.0</a>");
+    map.on('moveend', function(){
+        updateLink(map);
     });
 
     var element = document.getElementById('popup');

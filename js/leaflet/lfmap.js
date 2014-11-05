@@ -34,6 +34,8 @@ $(document).ready(function() {
         layers: [swissstyle]
     });
 
+    updateLink(map);
+
     var baseMaps = {
         "Mapbox Satellite": mapbox,
         "Swiss Style OSM": swissstyle
@@ -45,10 +47,7 @@ $(document).ready(function() {
     };
 
     map.on('move', function(){
-        var center = map.getCenter(),
-            zoom = map.getZoom();
-        $(".lfSwitch").prop("href", "openlayers.html?lat=" + center.lat + "&lng=" + center.lng + "&zoom=" + zoom + "");
-        $(".lfTitle").prop("href", "index.html?lat=" + center.lat + "&lng=" + center.lng + "&zoom=" + zoom + "");
+        updateLink(map);
     });
 
     //enabling snapping for Feature editing/creation

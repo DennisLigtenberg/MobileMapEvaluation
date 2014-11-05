@@ -45,3 +45,10 @@ var addFitBounds = function(bounds) {
     });
     return L.FitBounds;
 };
+
+var updateLink = function (map) {
+    var center = map.getCenter(),
+        zoom = map.getZoom();
+    $(".lfSwitch").prop("href", "openlayers.html?lat=" + center.lat + "&lng=" + center.lng + "&zoom=" + zoom + "");
+    $(".lfTitle").prop("href", "index.html?lat=" + center.lat + "&lng=" + center.lng + "&zoom=" + zoom + "");
+};
