@@ -5,6 +5,8 @@ $(document).ready(function() {
         params[key] = value;
     });
 
+    var zoomStart = 0
+
     var osmAttribution = createAttribution(osmAttributionUrl, osmAttributionText);
     var swissstyle = addTileLayer(osmSrc, osmAttribution);
 
@@ -31,7 +33,7 @@ $(document).ready(function() {
         center: [params.lat || centerLat, params.lng || centerLng],
         zoom: params.zoom || startZoom,
         maxBounds: bounds,
-        layers: [swissstyle]
+        layers: [swissstyle, castles]
     });
 
     updateLink(map);
@@ -61,10 +63,17 @@ $(document).ready(function() {
         snap.unwatchMarker(e.vertex);
     });
 
+    map.on('zoomstart', function(){
+        zoomStart = map.getZoom();
+        console.log(zoomStart);
+    });
+
     //only show castles from zoom level 9
-    map.on('zoomend', function(e){
-        if (map.getZoom() == 8){map.removeLayer(castles)}
-        else if (map.getZoom() == 9){map.addLayer(castles)}
+    map.on('zoomend', function(){
+        if(zoomStart == 8){
+            map.addLayer(castles)
+        }
+        else if (map.getZoom() == 8){map.removeLayer(castles)}
     })
 
     //loading spinner

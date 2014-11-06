@@ -26,6 +26,9 @@ var loadGeoJson = function(title, source, projection, iconSrc){
             projection: projection
         }),
         style: new ol.style.Style({
+            fill: new ol.style.Fill({
+                color: "#880000"
+            }),
             image: new ol.style.Icon(({
                 src: iconSrc
             }))

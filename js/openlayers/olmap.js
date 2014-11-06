@@ -46,14 +46,13 @@ $(document).ready(function() {
                 maxResolution: 611.49622628141,
                 layers: [
                     loadGeoJson("Castles", geoJsonCastle, "EPSG:3857", castleIcon),
-                    loadGeoJson("Roads", geoJsonRoad, "EPSG:3857", ""),
                 ]
             })
         ],
         view: new ol.View({
             center: ol.proj.transform([params.lng || centerLng, params.lat || centerLat], 'EPSG:4326', 'EPSG:3857'),
-            zoom: params.zoom || minZoom,
-            minZoom: startZoom,
+            zoom: params.zoom || startZoom,
+            minZoom: minZoom,
             extent: [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197]
         })
     });

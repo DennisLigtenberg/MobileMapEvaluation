@@ -14,7 +14,7 @@ var mapboxAttributionText = "Mapbox";
 
 //minimal/start layer zoom level
 var minZoom = 8;
-var startZoom = 8;
+var startZoom = 9;
 
 //center
 centerLat = 47.2267;
