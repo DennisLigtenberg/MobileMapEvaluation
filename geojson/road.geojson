@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"crs": null,
                                                                                 
 "features": [
 { "type": "Feature", "properties": { "full_id": "w4391793", "osm_id": "4391793", "osm_type": "way", "maxspeed": "30", "name": "Rütistrasse", "highway": "residential", "oneway": "yes", "ref": null, "nat_ref": null, "loc_ref": null, "junction": null, "motorcycle": null, "motorcar": null, "surface": null, "horse": null, "tracktype": null, "motor_vehi": null, "access": null, "bridge": null, "layer": null, "lanes": null, "sidewalk": null, "lit": null, "width": null, "service": null, "is_in": null, "bicycle": null, "maxspeed_c": null, "mtb_scale": null, "trail_visi": null, "addr_postc": null, "sac_scale": null, "foot": null, "sidewalk_r": null, "tunnel": null }, "geometry": { "type": "LineString", "coordinates": [ [ 8.5649944, 47.3722924 ], [ 8.5648374, 47.3721704 ], [ 8.5644301, 47.3717346 ], [ 8.5636996, 47.3710026 ], [ 8.5636512, 47.3709355 ] ] } },

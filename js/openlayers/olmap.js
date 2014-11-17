@@ -45,7 +45,7 @@ $(document).ready(function() {
                 'title': 'Thematic Layers',
                 maxResolution: 611.49622628141,
                 layers: [
-                    loadGeoJson("Castles", geoJsonCastle, "EPSG:3857", castleIcon),
+                    loadGeoJson("Castles", geoJsonCastle, "EPSG:3857", castleIcon)
                 ]
             })
         ],
