@@ -24,7 +24,7 @@ $(document).ready(function() {
         }),
         castles =  loadGeojson(geoJsonCastle,castles, layerIcon);
 
-    var p1 = new L.LatLng(45.7300, 5.8000),
+    var p1 = new L.LatLng(45.7300, 5.8000),s
         p2 = new L.LatLng(47.9000, 10.600),
         bounds = L.latLngBounds(p1, p2);
 

@@ -7,10 +7,11 @@ var osmName = "Swiss Style OSM";
 var mapboxName = "Mapbox Satellite";
 
 //Map-Copyright url/linktext
-var osmAttributionUrl = "http://www.osm.ch/";
-var osmAttributionText = "osm.ch";
-var mapboxAttributionUrl = "http://www.mapbox.com";
-var mapboxAttributionText = "Mapbox";
+var osmAttributionUrl = " http://www.openstreetmap.org/copyright";
+var osmAttributionText = "OSM";
+
+var mapboxAttributionUrl = "https://www.mapbox.com/about/maps/";
+var mapboxAttributionText = "MapBox";
 
 //minimal/start layer zoom level
 var minZoom = 8;

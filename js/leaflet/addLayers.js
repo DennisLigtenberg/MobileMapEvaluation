@@ -13,8 +13,9 @@ var loadGeojson = function(filepath, layergoup, icon){
     return layergoup;
 };
 
-var createAttribution = function(mapdesc, mapsrc){
-    return "Map data &copy; <a href=" + mapsrc + ">" + mapdesc + "</a> | " +
+var createAttribution = function(mapsrc, mapdesc){
+    return "<a href='http://wiki.openstreetmap.org/wiki/Open_Database_License'>OpenStreetMap</a> contributors | " +
+        "Map data &copy; <a href=" + mapsrc + ">" + mapdesc + "</a> | " +
         "<a href='http://giswiki.hsr.ch/Webmapping_Clients'>About</a> | " +
         "<a href='http://www.hsr.ch/geometalab'>By GeometaLab</a>";
 }

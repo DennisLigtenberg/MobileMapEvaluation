@@ -37,8 +37,8 @@ $(document).ready(function() {
             new ol.layer.Group({
                 'title': 'Background Layers',
                 layers: [
-                    createLayer(true, osmName, osmSrc, createAttribution(osmAttributionText, osmAttributionUrl)),
-                    createLayer(false, mapboxName, mapboxSrc, createAttribution(mapboxAttributionText, mapboxAttributionUrl)),
+                    createLayer(true, osmName, osmSrc, createAttribution(osmAttributionUrl, osmAttributionText)),
+                    createLayer(false, mapboxName, mapboxSrc, createAttribution(mapboxAttributionUrl, mapboxAttributionText)),
                 ]
             }),
             new ol.layer.Group({

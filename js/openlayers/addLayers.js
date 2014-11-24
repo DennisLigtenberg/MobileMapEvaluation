@@ -10,9 +10,10 @@ var createLayer = function(visible, name, url, attribution) {
     })
 };
 
-var createAttribution = function(mapdesc, mapsrc){
+var createAttribution = function(mapsrc, mapdesc){
     return new ol.Attribution({
-        html: "Map data &copy; <a href=" + mapsrc + ">" + mapdesc + "</a> | " +
+        html: "&copy; <a href='http://wiki.openstreetmap.org/wiki/Open_Database_License'>OpenStreetMap</a> contributors  | " +
+        "&copy; <a href=" + mapsrc + ">" + mapdesc + "</a> | " +
         "<a href='http://giswiki.hsr.ch/Webmapping_Clients'>About</a> | " +
         "<a href='http://www.hsr.ch/geometalab'>By GeometaLab -------</a>"
     });
