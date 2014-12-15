@@ -8,7 +8,7 @@ var createLayer = function(visible, name, url, attribution) {
             url: url,
             attributions: [attribution]
         })
-    })
+    });
 };
 
 //Returns an ol.Attribution for a background layer
@@ -37,5 +37,5 @@ var loadGeoJson = function(title, source, projection, iconSrc){
                 src: iconSrc
             }))
         })
-    })
+    });
 };

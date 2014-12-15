@@ -14,7 +14,7 @@ $(document).ready(function() {
 
     //Add a roads (Lines features) to test snapping from geojson
     var road = new L.LayerGroup(),
-        src = (geoJsonRoad)
+        src = (geoJsonRoad);
         road =  loadGeojson(src ,road, "");
 
     //Add casltes from geojson
@@ -81,7 +81,7 @@ $(document).ready(function() {
 
     //only show castles from zoom level 9
     map.on('zoomend', function(){
-        if(zoomStart == 8 && haslayer == true){
+        if(zoomStart == 8 && haslayer === true){
             map.addLayer(castles)
         }
         else if (map.getZoom() == 8){map.removeLayer(castles)}

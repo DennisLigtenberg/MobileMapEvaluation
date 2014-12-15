@@ -10,8 +10,7 @@ var addControl = function(position, hoverText, buttonText, onClick){
             link.href = '#';
             link.title = hoverText;
             link.innerHTML = buttonText;
-            L.DomEvent.on(link, 'click', L.DomEvent.stop)
-                .on(link, 'click', function() {
+            L.DomEvent.on(link, 'click', L.DomEvent.stop).on(link, 'click', function() {
                     eval(onClick);
                 });
 
@@ -36,8 +35,7 @@ var addFitBounds = function(bounds) {
             link.href = '#';
             link.title = 'Zoom to max extent';
             link.innerHTML = 'E';
-            L.DomEvent.on(link, 'click', L.DomEvent.stop)
-                .on(link, 'click', function () {
+            L.DomEvent.on(link, 'click', L.DomEvent.stop).on(link, 'click', function () {
                     map.fitBounds(bounds);
                 });
 

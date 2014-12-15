@@ -35,7 +35,7 @@ $(document).ready(function() {
                 layers: [
                     //adds a layer to the map (visible, name, source, attribution)
                     createLayer(true, osmName, osmSrc, createAttribution(osmAttributionUrl, osmAttributionText)),
-                    createLayer(false, mapboxName, mapboxSrc, createAttribution(mapboxAttributionUrl, mapboxAttributionText)),
+                    createLayer(false, mapboxName, mapboxSrc, createAttribution(mapboxAttributionUrl, mapboxAttributionText))
                 ]
             }),
             //Layergroup for features

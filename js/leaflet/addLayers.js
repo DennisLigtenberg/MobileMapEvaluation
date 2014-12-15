@@ -21,7 +21,7 @@ var createAttribution = function(mapsrc, mapdesc){
         "Map data &copy; <a href=" + mapsrc + ">" + mapdesc + "</a> | " +
         "<a href='http://giswiki.hsr.ch/Webmapping_Clients'>About</a> | " +
         "<a href='http://www.hsr.ch/geometalab'>By GeometaLab</a>";
-}
+};
 
 
 //Creates and returns a background layer
@@ -30,5 +30,5 @@ var addTileLayer = function(src, attribution){
         attribution: attribution,
         minZoom: minZoom
     });
-    return layer
+    return layer;
 };
