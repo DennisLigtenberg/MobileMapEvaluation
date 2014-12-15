@@ -16,6 +16,11 @@ var mapboxAttributionText = "MapBox";
 //minimal/start layer zoom level
 var minZoom = 8;
 var startZoom = 9;
+var olRes = 611.49622628141;
+
+//Mapbounds
+var lfbounds = [45.7300, 5.8000, 47.9000, 10.600];
+var olbounds = [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197];
 
 //center
 centerLat = 47.2267;

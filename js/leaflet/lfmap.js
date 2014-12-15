@@ -5,18 +5,19 @@ $(document).ready(function() {
         params[key] = value;
     });
 
-    var zoomStart = 0
-
+    //Add background layers with custom attributions
     var osmAttribution = createAttribution(osmAttributionUrl, osmAttributionText);
     var swissstyle = addTileLayer(osmSrc, osmAttribution);
 
     var mapboxAttribution = createAttribution(mapboxAttributionUrl, mapboxAttributionText);
     var mapbox = addTileLayer(mapboxSrc, mapboxAttribution);
 
+    //Add a roads (Lines features) to test snapping from geojson
     var road = new L.LayerGroup(),
         src = (geoJsonRoad)
         road =  loadGeojson(src ,road, "");
 
+    //Add casltes from geojson
     var castles = new L.LayerGroup(),
         layerIcon = L.icon({
             iconUrl: castleIcon,
@@ -24,10 +25,11 @@ $(document).ready(function() {
         }),
         castles =  loadGeojson(geoJsonCastle,castles, layerIcon);
 
-    var p1 = new L.LatLng(45.7300, 5.8000),s
-        p2 = new L.LatLng(47.9000, 10.600),
+    //Create Leaflet bounds
+    var p1 = new L.LatLng(lfbounds[0], lfbounds[1]),
+        p2 = new L.LatLng(lfbounds[2], lfbounds[3]),
         bounds = L.latLngBounds(p1, p2);
-
+    //Create the map
     var map = L.map('map', {
         editable: true,
         center: [params.lat || centerLat, params.lng || centerLng],
@@ -36,18 +38,22 @@ $(document).ready(function() {
         layers: [swissstyle, castles]
     });
 
+    //Initial link update
     updateLink(map);
 
+    //Define the base map group for the control
     var baseMaps = {
         "Mapbox Satellite": mapbox,
         "Swiss Style OSM": swissstyle
     };
 
+    //Define the feature overlay group for the control
     var overlay = {
         "Castles": castles,
         "Roads": road
     };
 
+    //updates link on every mapmovement
     map.on('move', function(){
         updateLink(map);
     });
@@ -62,30 +68,37 @@ $(document).ready(function() {
     map.on('editable:vertex:dragend', function (e) {
         snap.unwatchMarker(e.vertex);
     });
+    var zoomStart = 0;
+    var haslayer = true;
 
+    //Checks if castles layer is displayed and gets zoom level before zoom start
     map.on('zoomstart', function(){
         zoomStart = map.getZoom();
-        console.log(zoomStart);
+        if(zoomStart != 8) {
+            haslayer = map.hasLayer(castles)
+        }
     });
 
     //only show castles from zoom level 9
     map.on('zoomend', function(){
-        if(zoomStart == 8){
+        if(zoomStart == 8 && haslayer == true){
             map.addLayer(castles)
         }
         else if (map.getZoom() == 8){map.removeLayer(castles)}
     })
 
-    //loading spinner
+    //loading spinner from plugin
     var loadingControl = L.Control.loading({
         spinjs: true
     });
 
+    //add editing/creating controls
     L.FitBounds = addFitBounds(bounds);
     L.polygonControl = addControl("topleft", "Create a new polygon", "□", "map.editTools.startPolygon()");
     L.lineControl = addControl("topleft", "Create a new line", "/", "map.editTools.startPolyline()");
     L.markerControl = addControl("topleft", "Create a new marker", "●", "map.editTools.startMarker()");
 
+    //different control elements
     L.control.mousePosition().addTo(map);
     L.control.scale({imperial: false}).addTo(map);
     L.control.layers(baseMaps, overlay).addTo(map);

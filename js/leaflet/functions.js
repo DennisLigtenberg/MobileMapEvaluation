@@ -1,6 +1,6 @@
+//Returns a leaflet control element that starts the "onClick action"
 var addControl = function(position, hoverText, buttonText, onClick){
     L.NewControl = L.Control.extend({
-
         options: {
             position: position
         },
@@ -21,6 +21,7 @@ var addControl = function(position, hoverText, buttonText, onClick){
     return L.NewControl;
 };
 
+//Returns a control that fits the view to given bounds
 var addFitBounds = function(bounds) {
     L.FitBounds = L.Control.extend({
 
@@ -46,6 +47,7 @@ var addFitBounds = function(bounds) {
     return L.FitBounds;
 };
 
+//Updates the link elements in the DOM with the new center and zoom coordinates
 var updateLink = function (map) {
     var center = map.getCenter(),
         zoom = map.getZoom();

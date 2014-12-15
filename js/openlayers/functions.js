@@ -1,3 +1,4 @@
+//Add a feature overlay for editing/creating
 var addFeatureOverlay = function () {
     return new ol.FeatureOverlay({
         style: new ol.style.Style({
@@ -18,6 +19,7 @@ var addFeatureOverlay = function () {
     });
 };
 
+//Updates the link elements in the DOM with the new center and zoom coordinates
 var updateLink = function (map) {
     var coords = map.getView().getCenter();
     var zoom = map.getView().getZoom();

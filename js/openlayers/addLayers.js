@@ -1,3 +1,4 @@
+//Return a background layer
 var createLayer = function(visible, name, url, attribution) {
     return new ol.layer.Tile({
         title: name,
@@ -10,6 +11,7 @@ var createLayer = function(visible, name, url, attribution) {
     })
 };
 
+//Returns an ol.Attribution for a background layer
 var createAttribution = function(mapsrc, mapdesc){
     return new ol.Attribution({
         html: "&copy; <a href='http://wiki.openstreetmap.org/wiki/Open_Database_License'>OpenStreetMap</a> contributors  | " +
@@ -19,6 +21,7 @@ var createAttribution = function(mapsrc, mapdesc){
     });
 };
 
+//Returns all the features from a geojson file in a layer
 var loadGeoJson = function(title, source, projection, iconSrc){
     return new ol.layer.Vector({
         title: title,

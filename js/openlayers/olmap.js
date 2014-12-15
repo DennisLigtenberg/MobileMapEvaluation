@@ -4,8 +4,6 @@ $(document).ready(function() {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (x, key, value) {
         params[key] = Number(value);
     });
-
-
     //initialize map
     var map = new ol.Map({
         target: 'map',
@@ -20,10 +18,7 @@ $(document).ready(function() {
             })
         }).extend([
             new ol.control.ZoomToExtent({
-                extent: [
-                    664577.360036, 5753148.32695,
-                    1167741.45842, 6075303.61197
-                ]
+                extent: olbounds
             }),
             new ol.control.ScaleLine(),
             new ol.control.Rotate({
@@ -34,34 +29,41 @@ $(document).ready(function() {
             })
         ]),
         layers: [
+            //Layergrgroup for background layers
             new ol.layer.Group({
                 'title': 'Background Layers',
                 layers: [
+                    //adds a layer to the map (visible, name, source, attribution)
                     createLayer(true, osmName, osmSrc, createAttribution(osmAttributionUrl, osmAttributionText)),
                     createLayer(false, mapboxName, mapboxSrc, createAttribution(mapboxAttributionUrl, mapboxAttributionText)),
                 ]
             }),
+            //Layergroup for features
             new ol.layer.Group({
                 'title': 'Thematic Layers',
-                maxResolution: 611.49622628141,
+                maxResolution: olRes,
                 layers: [
                     loadGeoJson("Castles", geoJsonCastle, "EPSG:3857", castleIcon)
                 ]
             })
         ],
+        //Mapview
         view: new ol.View({
             center: ol.proj.transform([params.lng || centerLng, params.lat || centerLat], 'EPSG:4326', 'EPSG:3857'),
             zoom: params.zoom || startZoom,
             minZoom: minZoom,
-            extent: [664577.360036, 5753148.32695, 1167741.45842, 6075303.61197]
+            extent: olbounds
         })
     });
 
+    //Initial link update
     updateLink(map);
 
+    //Layerswitcher controll element (from the layerswitcher plugin)
     var layerSwitcher = new ol.control.LayerSwitcher();
     map.addControl(layerSwitcher);
 
+    //Feature overlay for creating/editing
     var featureOverlay = addFeatureOverlay();
     featureOverlay.setMap(map);
 
@@ -70,8 +72,8 @@ $(document).ready(function() {
     });
     map.addInteraction(modify);
 
+    //add draw interaction
     var draw;
-
     function addInteraction(type) {
         if (type !== 'None') {
             draw = new ol.interaction.Draw({
@@ -82,6 +84,7 @@ $(document).ready(function() {
         }
     }
 
+    //gets value from control buttons and activates the corresponding interaction
     $("#none, #point, #lineString, #polygon").click(function() {
         map.removeInteraction(draw);
         addInteraction($(this).attr("value"));
@@ -90,21 +93,23 @@ $(document).ready(function() {
 
     addInteraction("None", draw, featureOverlay);
 
+    //updates link on every mapmovement
     map.on('moveend', function(){
         updateLink(map);
     });
 
+    //Get the popup div element
     var element = document.getElementById('popup');
 
+    //Create the popup overlay
     var popup = new ol.Overlay({
         element: element,
         positioning: 'bottom-center',
         stopEvent: false
     });
-
-    //popup zu den features hinzufügen
     map.addOverlay(popup);
 
+    //Popup on click on feature
     map.on('click', function (evt) {
         $(element).popover('destroy');
         var feature = map.forEachFeatureAtPixel(evt.pixel,
